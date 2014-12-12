@@ -10,7 +10,7 @@ void cEnemy::MarchNo(int id)
 	int layer =round( id / 5);
 	cModel::m_mdlPosition.y = 0.0f;
 	cModel::m_mdlPosition.x = 10 * (id - (5 * layer)) + (5 * layer);
-	cModel::m_mdlPosition.z = 50.0f + (10*layer);   // random number as a float between 0 & 1
+	cModel::m_mdlPosition.z = 0.0f + (10*layer);   // random number as a float between 0 & 1
 	cModel::m_mdlRotation = 0.0f;
 	cModel::m_mdlDirection.x = 10;
 	cModel::m_mdlDirection.z = 0.0f;

@@ -228,6 +228,13 @@ LRESULT CALLBACK cWNDManager::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 		pInstance->getAttachedWND()->onResize(width, height); //Call the example's resize method
 	}
 		break;
+	case WM_KEYUP:
+			if (wParam == VK_SPACE)
+			{
+				fire = false;
+			}
+		break;
+
 	case WM_KEYDOWN:
 		if (wParam == VK_ESCAPE) //If the escape key was pressed
 		{
@@ -299,6 +306,10 @@ LRESULT CALLBACK cWNDManager::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 		if (wParam == VK_SPACE) //If the Down Arrow key was pressed
 		{
 			fire = true;
+		}
+		if (wParam == VK_SHIFT) //If the Down Arrow key was pressed
+		{
+			camera = !camera;
 		}
 
 		break;

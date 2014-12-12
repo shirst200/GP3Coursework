@@ -38,6 +38,7 @@ extern float currentAngle;
 extern float translationX;
 extern float currentX;
 extern bool fire;
+extern bool camera;
 
 
 #endif

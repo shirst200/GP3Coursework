@@ -12,3 +12,4 @@ float currentAngle = 0;
 float translationX = 0;
 float currentX = 0;
 bool fire = false;
+bool camera = true;

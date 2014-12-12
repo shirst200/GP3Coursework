@@ -84,7 +84,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	}
 
 	cPlayer thePlayer;
-	thePlayer.initialise(glm::vec3(0, 0, 0), 0.0f, glm::vec3(1, 1, 1), glm::vec3(0, 0, 0), 5.0f, true);
+	thePlayer.initialise(glm::vec3(0, 0, -100), 0.0f, glm::vec3(1, 1, 1), glm::vec3(0, 0, 0), 5.0f, true);
 	thePlayer.setMdlDimensions(tardisMdl2.getModelDimensions());
 
 	std::vector<cLaser*> laserList;
@@ -102,15 +102,15 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	dtx_use_font(fntmain, FONT_SZ);
 	
 	// Load Sound
-	cSound themeMusic;
-	themeMusic.createContext();
-	themeMusic.loadWAVFile("Audio/who10Edit.wav");
-	themeMusic.playAudio(AL_LOOPING);
+	//cSound themeMusic;
+	//themeMusic.createContext();
+	//themeMusic.loadWAVFile("Audio/who10Edit.wav");
+	//themeMusic.playAudio(AL_LOOPING);
 
 	// explosion
-	cSound explosionFX;
-	explosionFX.createContext();
-	explosionFX.loadWAVFile("Audio/explosion2.wav");
+	//cSound explosionFX;
+	//explosionFX.createContext();
+	//explosionFX.loadWAVFile("Audio/explosion2.wav");
 
 	//firing sound
 	cSound firingFX;
@@ -131,7 +131,16 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
-		gluLookAt(0, 120, 150, 0, 0, 0, 0, 1, 0);
+
+		if (camera)
+		{
+			gluLookAt(0, 300, 10, 0, 0, 0, 0, 1, 0);
+		}
+		else
+		{
+			gluLookAt(0, 0, 150, 0, 0, 0, 0, 1, 0);
+		}
+
 
 
 
@@ -157,7 +166,6 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 		tardisMdl2.renderMdl(thePlayer.getPosition(), thePlayer.getRotation(), thePlayer.getScale());
 		thePlayer.update(elapsedTime);
-		
 		////are we shooting?
 		if (fire)
 		{
@@ -170,13 +178,13 @@ int WINAPI WinMain(HINSTANCE hInstance,
 			laser->setDirection(mdlLaserDirection);   ///     glm::vec3(0, 0, 5)
 			laser->setRotation(0.0f);
 			laser->setScale(glm::vec3(3, 3, 3));
-			laser->setSpeed(2);
+			laser->setSpeed(25);
 			laser->setPosition(thePlayer.getPosition() + mdlLaserDirection);    //   glm::vec3(0, 0, 0)
 			laser->setIsActive(true);
 			laser->setMdlDimensions(theLaser.getModelDimensions());
 			laser->update(elapsedTime);
           	laserList.push_back(laser);
-			fire = false;
+			//fire = false;
 			firingFX.playAudio(AL_FALSE);
 			//numShots++;
 		}
@@ -203,7 +211,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 					{
 						(*EnemyIndex)->setIsActive(false);
 						(*index)->setIsActive(false);
-     						explosionFX.playAudio(AL_FALSE);
+     						//explosionFX.playAudio(AL_FALSE);
 						break; // No need to check for other bullets.
 					}
 				}
