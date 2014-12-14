@@ -7,6 +7,7 @@ cEnemy::cEnemy() : cModel()
 
 void cEnemy::MarchNo(int id)
 {
+	health = 100;
 	int layer =round( id / 5);
 	cModel::m_mdlPosition.y = 0.0f;
 	cModel::m_mdlPosition.x = 10 * (id - (5 * layer)) + (5 * layer);
@@ -16,6 +17,14 @@ void cEnemy::MarchNo(int id)
 	cModel::m_mdlDirection.z = 0.0f;
 	cModel::m_mdlSpeed = 1.0f;//m_EnemyMinSpeed + rand() / (float)RAND_MAX * m_EnemyMaxSpeed;
 	cModel::m_IsActive = true;
+}
+int cEnemy::getHealth()
+{
+	return health;
+}
+void cEnemy::setHealth(int damage)
+{
+	health -= damage;
 }
 int cEnemy::GetSpeed()
 {
@@ -27,7 +36,10 @@ void cEnemy::SetSpeed(int speed)
 }
 void cEnemy::update(float elapsedTime)
 {
-	cModel::m_mdlPosition += cModel::m_mdlDirection * cModel::m_mdlSpeed * elapsedTime;
+	glm::vec3 mdlVelocityAdd;
+	mdlVelocityAdd.x = -translationX;
+	PLAYFIELDX -= -translationX;
+	cModel::m_mdlPosition += cModel::m_mdlDirection * cModel::m_mdlSpeed * elapsedTime + mdlVelocityAdd;
 	if (cModel::m_mdlPosition.x > PLAYFIELDX)
 		cModel::m_mdlSpeed = -1.0f;
 	if (cModel::m_mdlPosition.x < -PLAYFIELDX)

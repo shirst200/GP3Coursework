@@ -11,5 +11,6 @@ float rotationAngle = 0;
 float currentAngle = 0;
 float translationX = 0;
 float currentX = 0;
+float PLAYFIELDX = 50.0f;
 bool fire = false;
 bool camera = true;

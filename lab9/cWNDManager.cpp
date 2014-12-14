@@ -266,7 +266,7 @@ LRESULT CALLBACK cWNDManager::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 		}
 		if (wParam == VK_LEFT) //If the Left Arrow key was pressed
 		{
-			if (currentX<35)
+			if (currentX<25)
 			{
 				currentX += 2.0f;
 				translationX = 2.0f;
@@ -276,7 +276,7 @@ LRESULT CALLBACK cWNDManager::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 		}
 		if (wParam == VK_RIGHT) //If the Left Arrow key was pressed
 		{
-			if (currentX>-35)
+			if (currentX>-25)
 			{
 				currentX -= 2.0f;
 				translationX = -2.0f;

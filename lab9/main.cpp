@@ -15,7 +15,6 @@
 #include "cPlayer.h"
 #include "cLaser.h"
 #include "cSound.h"
-//#include "cCamera.h"
 #include <vector>
 #include <time.h>
 
@@ -86,6 +85,10 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	cPlayer thePlayer;
 	thePlayer.initialise(glm::vec3(0, 0, -100), 0.0f, glm::vec3(1, 1, 1), glm::vec3(0, 0, 0), 5.0f, true);
 	thePlayer.setMdlDimensions(tardisMdl2.getModelDimensions());
+
+	float shotDelay= 0.5f;
+	float lastShot = 0.0f;
+	float time = 0.0f;
 
 	std::vector<cLaser*> laserList;
 	std::vector<cLaser*>::iterator index;
@@ -163,11 +166,12 @@ int WINAPI WinMain(HINSTANCE hInstance,
 				(*EnemyIndex)->update(elapsedTime);
 			}
 		}
-
+		translationX = 0;
 		tardisMdl2.renderMdl(thePlayer.getPosition(), thePlayer.getRotation(), thePlayer.getScale());
 		thePlayer.update(elapsedTime);
 		////are we shooting?
-		if (fire)
+		time += elapsedTime;
+		if (fire&&(time-lastShot)>shotDelay)
 		{
 			cLaser* laser = new cLaser();
 			glm::vec3 mdlLaserDirection;
@@ -187,6 +191,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 			//fire = false;
 			firingFX.playAudio(AL_FALSE);
 			//numShots++;
+			lastShot = time;
 		}
 
 		//for (int loop = 0; loop < numShots; loop++)
@@ -209,7 +214,11 @@ int WINAPI WinMain(HINSTANCE hInstance,
 					//enemyList[loop].update(elapsedTime);
 					if ((*index)->SphereSphereCollision((*EnemyIndex)->getPosition(), (*EnemyIndex)->getMdlRadius()))
 					{
-						(*EnemyIndex)->setIsActive(false);
+						(*EnemyIndex)->setHealth(50);
+						if ((*EnemyIndex)->getHealth() < 1)
+						{
+							(*EnemyIndex)->setIsActive(false);
+						}
 						(*index)->setIsActive(false);
      						//explosionFX.playAudio(AL_FALSE);
 						break; // No need to check for other bullets.

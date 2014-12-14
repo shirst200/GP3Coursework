@@ -10,6 +10,9 @@ public:
 	cEnemy();
 
 	void MarchNo(int id);
+	int health;
+	int getHealth();
+	void setHealth(int damage);
 	int GetSpeed();
 	void SetSpeed(int speed);
 	virtual void update(float elapsedTime);
