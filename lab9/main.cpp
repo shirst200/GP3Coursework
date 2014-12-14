@@ -90,9 +90,11 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	float lastShot = 0.0f;
 	float time = 0.0f;
 
-	std::vector<cLaser*> laserList;
+	std::vector<cLaser*> PlayerLaserList;
 	std::vector<cLaser*>::iterator index;
 	
+	std::vector<cLaser*>enemyLaserList;
+	std::vector<cLaser*>::iterator enemyShotIndex;
 	//cLaser laserList[30];
 	//int numShots = 0;
 
@@ -127,7 +129,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
         //We get the time that passed since the last frame
 		float elapsedTime = pgmWNDMgr->getElapsedSeconds();
-
+		time += elapsedTime;
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		theOGLWnd.initOGL();
 		glClearColor(0.8, 0.9, 1, 1);
@@ -143,9 +145,6 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		{
 			gluLookAt(0, 0, 150, 0, 0, 0, 0, 1, 0);
 		}
-
-
-
 
 		//Do any pre-rendering logic
 		//Render the scene
@@ -164,13 +163,33 @@ int WINAPI WinMain(HINSTANCE hInstance,
 				(*EnemyIndex)->SetSpeed(vel);
 				tardisMdl.renderMdl((*EnemyIndex)->getPosition(), (*EnemyIndex)->getRotation(), (*EnemyIndex)->getScale());
 				(*EnemyIndex)->update(elapsedTime);
+				if (time > (*EnemyIndex)->getShotTime() + (rand() % 30)+3)
+				{
+					(*EnemyIndex)->setShotTime(time);
+					cLaser* laser = new cLaser();
+					glm::vec3 mdlLaserDirection;
+					mdlLaserDirection.x = 0.0f;
+					mdlLaserDirection.y = 0.0f;
+					mdlLaserDirection.z = -1.0f;
+
+					laser->setDirection(mdlLaserDirection);   ///     glm::vec3(0, 0, 5)
+					laser->setRotation(0.0f);
+					laser->setScale(glm::vec3(3, 3, 3));
+					laser->setSpeed(25);
+					laser->setPosition((*EnemyIndex)->getPosition() + mdlLaserDirection);    //   glm::vec3(0, 0, 0)
+					laser->setIsActive(true);
+					laser->setMdlDimensions(theLaser.getModelDimensions());
+					laser->update(elapsedTime);
+					enemyLaserList.push_back(laser);
+					firingFX.playAudio(AL_FALSE);
+				}
 			}
 		}
 		translationX = 0;
 		tardisMdl2.renderMdl(thePlayer.getPosition(), thePlayer.getRotation(), thePlayer.getScale());
 		thePlayer.update(elapsedTime);
 		////are we shooting?
-		time += elapsedTime;
+		
 		if (fire&&(time-lastShot)>shotDelay)
 		{
 			cLaser* laser = new cLaser();
@@ -187,7 +206,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 			laser->setIsActive(true);
 			laser->setMdlDimensions(theLaser.getModelDimensions());
 			laser->update(elapsedTime);
-          	laserList.push_back(laser);
+			PlayerLaserList.push_back(laser);
 			//fire = false;
 			firingFX.playAudio(AL_FALSE);
 			//numShots++;
@@ -200,8 +219,25 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		//	laserList[loop].update(elapsedTime);
 		//}
 
-
-		for (index = laserList.begin(); index != laserList.end(); ++index)
+		for (enemyShotIndex = enemyLaserList.begin(); enemyShotIndex != enemyLaserList.end(); ++enemyShotIndex)
+		{
+			//glScalef(3, 3, 3);
+			theLaser.renderMdl((*enemyShotIndex)->getPosition(), (*enemyShotIndex)->getRotation(), (*enemyShotIndex)->getScale());
+			(*enemyShotIndex)->update(elapsedTime);
+			// check for collisions
+			if ((*enemyShotIndex)->SphereSphereCollision(thePlayer.getPosition(), thePlayer.getMdlRadius()))
+				{
+					thePlayer.setHealth(50);
+					if (thePlayer.getHealth() < 1)
+					{
+						thePlayer.setIsActive(false);
+					}
+					(*enemyShotIndex)->setIsActive(false);
+					//explosionFX.playAudio(AL_FALSE);
+					break; // No need to check for other bullets.
+				}
+			}
+		for (index = PlayerLaserList.begin(); index != PlayerLaserList.end(); ++index)
 		{
 			if ((*index)->isActive())
 			{
@@ -226,16 +262,32 @@ int WINAPI WinMain(HINSTANCE hInstance,
 				}
 			}
 		}
-		index = laserList.begin();
-		while (index != laserList.end())
+		if (thePlayer.isActive() == false)
+		{
+			thePlayer.~cPlayer();
+		}
+		index = PlayerLaserList.begin();
+		while (index != PlayerLaserList.end())
 		{
 			if ((*index)->isActive() == false)
 			{
-				(index) = laserList.erase(index);
+				(index) = PlayerLaserList.erase(index);
 			}
 			else
 			{
 				index++;
+			}
+		}
+		enemyShotIndex = enemyLaserList.begin();
+		while (enemyShotIndex != enemyLaserList.end())
+		{
+			if ((*enemyShotIndex)->isActive() == false)
+			{
+				(enemyShotIndex) = enemyLaserList.erase(enemyShotIndex);
+			}
+			else
+			{
+				enemyShotIndex++;
 			}
 		}
 		EnemyIndex = enemyList.begin();

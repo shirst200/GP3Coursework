@@ -7,6 +7,7 @@ cEnemy::cEnemy() : cModel()
 
 void cEnemy::MarchNo(int id)
 {
+	shotTime = 0.0f;
 	health = 100;
 	int layer =round( id / 5);
 	cModel::m_mdlPosition.y = 0.0f;
@@ -17,6 +18,14 @@ void cEnemy::MarchNo(int id)
 	cModel::m_mdlDirection.z = 0.0f;
 	cModel::m_mdlSpeed = 1.0f;//m_EnemyMinSpeed + rand() / (float)RAND_MAX * m_EnemyMaxSpeed;
 	cModel::m_IsActive = true;
+}
+float cEnemy::getShotTime()
+{
+	return shotTime;
+}
+void cEnemy::setShotTime(float add)
+{
+	shotTime = add;
 }
 int cEnemy::getHealth()
 {

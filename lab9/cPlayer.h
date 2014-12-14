@@ -9,6 +9,10 @@ class cPlayer : public cModel
 public:
 	cPlayer();
 
+	int health;
+	int getHealth();
+	void setHealth(int damage);
+
 	virtual void update(float elapsedTime);
 
 	~cPlayer();

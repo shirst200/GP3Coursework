@@ -2,9 +2,16 @@
 
 cPlayer::cPlayer() : cModel()
 {
-
+	health = 100;
 }
-
+int cPlayer::getHealth()
+{
+	return health;
+}
+void cPlayer::setHealth(int damage)
+{
+	health -= damage;
+}
 void cPlayer::update(float elapsedTime)
 {
 	// Find out what direction we should be thrusting, using rotation.
@@ -26,5 +33,5 @@ void cPlayer::update(float elapsedTime)
 
 cPlayer::~cPlayer()
 {
-
+		
 }

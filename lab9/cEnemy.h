@@ -10,6 +10,9 @@ public:
 	cEnemy();
 
 	void MarchNo(int id);
+	float shotTime;
+	float getShotTime();
+	void setShotTime(float add);
 	int health;
 	int getHealth();
 	void setHealth(int damage);
