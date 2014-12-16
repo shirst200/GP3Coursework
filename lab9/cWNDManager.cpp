@@ -240,7 +240,10 @@ LRESULT CALLBACK cWNDManager::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 		{
 			DestroyWindow(pInstance->m_hwnd); //Send a WM_DESTROY message
 		}
-
+		if (wParam == 'm' || wParam == 'M')
+		{
+			playing = !playing;
+		}
 		if (wParam == 'd' || wParam == 'D')  //If d or D was pressed
 		{
 			drawMode = ++drawMode % 3;
@@ -264,17 +267,15 @@ LRESULT CALLBACK cWNDManager::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 			}
 			break;
 		}
-		if (wParam == VK_LEFT) //If the Left Arrow key was pressed
+		if (wParam == VK_RIGHT) //If the right Arrow key was pressed
 		{
 			if (currentX<25)
 			{
 				currentX += 2.0f;
 				translationX = 2.0f;
 			}
-			 //Increase rotation Angle
-			//glRotatef(rotationAngle, 0.0f, 1.0f, 0.0f);
 		}
-		if (wParam == VK_RIGHT) //If the Left Arrow key was pressed
+		if (wParam == VK_LEFT) //If the Left Arrow key was pressed
 		{
 			if (currentX>-25)
 			{

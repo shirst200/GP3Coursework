@@ -39,6 +39,7 @@ extern float translationX;
 extern float currentX;
 extern bool fire;
 extern bool camera;
+extern bool playing;
 
 
 #endif

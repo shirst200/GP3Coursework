@@ -14,3 +14,4 @@ float currentX = 0;
 float PLAYFIELDX = 50.0f;
 bool fire = false;
 bool camera = true;
+bool playing = true;

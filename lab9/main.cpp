@@ -1,4 +1,4 @@
-#define WIN32_LEAN_AND_MEAN
+﻿#define WIN32_LEAN_AND_MEAN
 #define WIN32_EXTRA_LEAN
 
 #define GLX_GLXEXT_LEGACY //Must be declared so that our local glxext.h is picked up, rather than the system one
@@ -89,6 +89,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	float shotDelay= 0.5f;
 	float lastShot = 0.0f;
 	float time = 0.0f;
+	int score = 0;
 
 	std::vector<cLaser*> PlayerLaserList;
 	std::vector<cLaser*>::iterator index;
@@ -107,19 +108,17 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	dtx_use_font(fntmain, FONT_SZ);
 	
 	// Load Sound
-	//cSound themeMusic;
-	//themeMusic.createContext();
-	//themeMusic.loadWAVFile("Audio/who10Edit.wav");
-	//themeMusic.playAudio(AL_LOOPING);
+	cSound themeMusic;
+	themeMusic.createContext();
+	themeMusic.loadWAVFile("Audio/NationalShiteDay.wav");
+	themeMusic.playAudio(AL_LOOPING);
 
 	// explosion
-	//cSound explosionFX;
-	//explosionFX.createContext();
-	//explosionFX.loadWAVFile("Audio/explosion2.wav");
+	cSound explosionFX;
+	explosionFX.loadWAVFile("Audio/explosion2.wav");
 
 	//firing sound
 	cSound firingFX;
-	firingFX.createContext();
 	firingFX.loadWAVFile("Audio/shot007.wav");
 
     //This is the mainloop, we render frames until isRunning returns false
@@ -143,7 +142,16 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		}
 		else
 		{
-			gluLookAt(0, 0, 150, 0, 0, 0, 0, 1, 0);
+			glm::vec3 facingDir;
+			facingDir.x = -(float)glm::sin(glm::radians(thePlayer.getRotation()));
+			facingDir.y = 0.0f;
+			facingDir.z = (float)glm::cos(glm::radians(thePlayer.getRotation()));
+			facingDir *= -1;
+
+			glm::vec3 pos;
+			pos = thePlayer.getPosition();
+
+			gluLookAt(pos.x, 3, -pos.z-2, pos.x + facingDir.x, 3, (pos.z + facingDir.z), 0, 1, 0);
 		}
 
 		//Do any pre-rendering logic
@@ -181,7 +189,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 					laser->setMdlDimensions(theLaser.getModelDimensions());
 					laser->update(elapsedTime);
 					enemyLaserList.push_back(laser);
-					firingFX.playAudio(AL_FALSE);
+					if (playing == true){ firingFX.playAudio(AL_TRUE); }
 				}
 			}
 		}
@@ -189,7 +197,8 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		tardisMdl2.renderMdl(thePlayer.getPosition(), thePlayer.getRotation(), thePlayer.getScale());
 		thePlayer.update(elapsedTime);
 		////are we shooting?
-		
+		if (playing == false){ themeMusic.playAudio(AL_FALSE); }
+
 		if (fire&&(time-lastShot)>shotDelay)
 		{
 			cLaser* laser = new cLaser();
@@ -208,7 +217,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 			laser->update(elapsedTime);
 			PlayerLaserList.push_back(laser);
 			//fire = false;
-			firingFX.playAudio(AL_FALSE);
+			if (playing == true){ firingFX.playAudio(AL_TRUE); }
 			//numShots++;
 			lastShot = time;
 		}
@@ -233,7 +242,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 						thePlayer.setIsActive(false);
 					}
 					(*enemyShotIndex)->setIsActive(false);
-					//explosionFX.playAudio(AL_FALSE);
+					if (playing == true){ explosionFX.playAudio(AL_TRUE); }
 					break; // No need to check for other bullets.
 				}
 			}
@@ -254,9 +263,10 @@ int WINAPI WinMain(HINSTANCE hInstance,
 						if ((*EnemyIndex)->getHealth() < 1)
 						{
 							(*EnemyIndex)->setIsActive(false);
+							score++;
 						}
 						(*index)->setIsActive(false);
-     						//explosionFX.playAudio(AL_FALSE);
+						explosionFX.playAudio(AL_TRUE);
 						break; // No need to check for other bullets.
 					}
 				}
@@ -313,7 +323,25 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		glDisable(GL_DEPTH_TEST);
 
 		glTranslatef(0, 730, 0);
-		dtx_string("Doctor Who: Tardis Test Drive");
+
+		string temp = "                               Health- ";
+		for (int i = 0; i < thePlayer.getHealth(); i += 50)
+		{
+			if (i==0)
+			temp += "|///|";
+			else temp += "///|";
+		}
+		string orig("Doctor Who: " + std::to_string(score) + temp);
+		cout << orig << "Doctor Who: " << endl;
+
+		// Convert to a char*
+		const size_t newsize = 100;
+		char nstring[newsize];
+		strcpy_s(nstring, orig.c_str());
+		strcat_s(nstring, ""+score);
+		cout << nstring << endl;
+
+		dtx_string(nstring);
 
 		glMatrixMode(GL_PROJECTION);
 		glPopMatrix();
