@@ -14,9 +14,14 @@ bool windowOGL::initOGL()
 	glDepthFunc(GL_LEQUAL);
 	glEnable(GL_TEXTURE_2D); //enable 2D texturing
 	glEnable(GL_LIGHTING);
+	glEnable(GL_COLOR_MATERIAL);
 	glEnable(GL_LIGHT0);
-	GLfloat lightpos[] = { .5, 1., 1., 0. };
+	glEnable(GL_AMBIENT);
+	glColor3f(1,0,0);
+	GLfloat lightpos[] = {currentX,0,-100};
 	glLightfv(GL_LIGHT0, GL_POSITION, lightpos);
+	
+	
 	onResize(1024, 768);
 	
 	glMatrixMode(GL_PROJECTION);

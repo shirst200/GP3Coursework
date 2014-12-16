@@ -18,6 +18,8 @@
 #include <vector>
 #include <time.h>
 
+
+
 #define FONT_SZ	24
 
 int WINAPI WinMain(HINSTANCE hInstance,
@@ -64,7 +66,6 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 	cModelLoader tardisMdl;
 	tardisMdl.loadModel("Models/tardis.obj");
-	
 
 	cModelLoader tardisMdl2;
 	tardisMdl2.loadModel("Models/tardis.obj"); // Player
@@ -74,7 +75,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 	std::vector<cEnemy*> enemyList;
 	std::vector<cEnemy*>::iterator EnemyIndex;
-	for (int loop = 0; loop < 10; loop++)
+	for (int loop = 0; loop < 10;  loop++)
 	{
 		cEnemy* cEnemyItem = new cEnemy();
 		cEnemyItem->MarchNo(loop);
@@ -115,11 +116,11 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 	// explosion
 	cSound explosionFX;
-	explosionFX.loadWAVFile("Audio/explosion2.wav");
+	explosionFX.loadWAVFile("Audio/Blast.wav");
 
 	//firing sound
 	cSound firingFX;
-	firingFX.loadWAVFile("Audio/shot007.wav");
+	firingFX.loadWAVFile("Audio/pew.wav");
 
     //This is the mainloop, we render frames until isRunning returns false
 	while (pgmWNDMgr->isWNDRunning())
@@ -135,6 +136,35 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
+
+		if (restart == true)
+		{
+			index = PlayerLaserList.begin();
+			while (index != PlayerLaserList.end())
+			{
+				(index) = PlayerLaserList.erase(index);
+			}
+			for (EnemyIndex = enemyList.begin(); EnemyIndex != enemyList.end(); ++EnemyIndex)
+			{
+				(*EnemyIndex)->setIsActive(false);
+			}
+			enemyShotIndex = enemyLaserList.begin();
+			while (enemyShotIndex != enemyLaserList.end())
+			{
+				(enemyShotIndex) = enemyLaserList.erase(enemyShotIndex);
+			}
+			for (int loop = 0; loop < 10; loop++)
+			{
+				cEnemy* cEnemyItem = new cEnemy();
+				cEnemyItem->MarchNo(loop);
+				cEnemyItem->setMdlDimensions(tardisMdl.getModelDimensions());
+				enemyList.push_back(cEnemyItem);
+			}
+			alive = true;
+			restart = false;
+			thePlayer.health = 250;
+			thePlayer.setIsActive(true);
+		}
 
 		if (camera)
 		{
@@ -153,7 +183,6 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 			gluLookAt(pos.x, 3, -pos.z-2, pos.x + facingDir.x, 3, (pos.z + facingDir.z), 0, 1, 0);
 		}
-
 		//Do any pre-rendering logic
 		//Render the scene
 		//Drawing the model
@@ -199,7 +228,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		////are we shooting?
 		if (playing == false){ themeMusic.playAudio(AL_FALSE); }
 
-		if (fire&&(time-lastShot)>shotDelay)
+		if (fire&&(time-lastShot)>shotDelay&&alive==true)
 		{
 			cLaser* laser = new cLaser();
 			glm::vec3 mdlLaserDirection;
@@ -222,11 +251,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 			lastShot = time;
 		}
 
-		//for (int loop = 0; loop < numShots; loop++)
-		//{
-		//	theLaser.renderMdl(laserList[loop].getPosition(), laserList[loop].getRotation());
-		//	laserList[loop].update(elapsedTime);
-		//}
+		
 
 		for (enemyShotIndex = enemyLaserList.begin(); enemyShotIndex != enemyLaserList.end(); ++enemyShotIndex)
 		{
@@ -312,6 +337,8 @@ int WINAPI WinMain(HINSTANCE hInstance,
 				EnemyIndex++;
 			}
 		}
+
+
 		glMatrixMode(GL_PROJECTION);
 		glPushMatrix();
 		glLoadIdentity();
@@ -331,11 +358,14 @@ int WINAPI WinMain(HINSTANCE hInstance,
 			temp += "|///|";
 			else temp += "///|";
 		}
+		if (alive == true&& enemyList.begin()!=enemyList.end()){ temp += "\nSpace to fire arrow keys to move"; }
+		else if (alive == false && enemyList.begin() != enemyList.end()){ temp += "\nWell done you incompetent fool/ndo you want to restart? Y/N"; }
+		else{ temp += "\nYou killed them all, restart?Y/N"; alive = false; }
 		string orig("Doctor Who: " + std::to_string(score) + temp);
 		cout << orig << "Doctor Who: " << endl;
 
 		// Convert to a char*
-		const size_t newsize = 100;
+		const size_t newsize = 300;
 		char nstring[newsize];
 		strcpy_s(nstring, orig.c_str());
 		strcat_s(nstring, ""+score);

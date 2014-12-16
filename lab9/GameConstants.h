@@ -29,7 +29,7 @@ struct mdlDimensions{
 	float s_mdlWidth, s_mdlheight, s_mdldepth;
 };
 
-extern float PLAYFIELDX;
+const float PLAYFIELDX = 50.0f;
 const float PLAYFIELDZ = 300.0f;
 
 extern int drawMode;
@@ -40,6 +40,9 @@ extern float currentX;
 extern bool fire;
 extern bool camera;
 extern bool playing;
+extern int moving;
+extern bool alive;
+extern bool restart;
 
 
 #endif

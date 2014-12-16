@@ -1,6 +1,7 @@
 #ifndef _WINDOWOGL_H
 #define _WINDOWOGL_H
 
+#include "GameConstants.h"
 #include <windows.h>
 #include <GL/glut.h>
 

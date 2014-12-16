@@ -47,7 +47,7 @@ void cEnemy::update(float elapsedTime)
 {
 
 	cModel::m_mdlPosition += cModel::m_mdlDirection * cModel::m_mdlSpeed * elapsedTime;
-	if (cModel::m_mdlPosition.x > PLAYFIELDX)
+	if (cModel::m_mdlPosition.x > PLAYFIELDX-50)
 		cModel::m_mdlSpeed = -1.0f;
 	if (cModel::m_mdlPosition.x < -PLAYFIELDX)
 		cModel::m_mdlSpeed = 1.0f;

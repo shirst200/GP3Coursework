@@ -228,14 +228,31 @@ LRESULT CALLBACK cWNDManager::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 		pInstance->getAttachedWND()->onResize(width, height); //Call the example's resize method
 	}
 		break;
+
 	case WM_KEYUP:
 			if (wParam == VK_SPACE)
 			{
 				fire = false;
 			}
+			if (wParam == VK_RIGHT && moving == 1)
+			{
+				moving = 0;
+			}
+			if (wParam == VK_LEFT && moving == 2)
+			{
+				moving = 0;
+			}
 		break;
 
 	case WM_KEYDOWN:
+		if ((wParam == 'n' || wParam == 'N') && alive == false)
+		{
+			DestroyWindow(pInstance->m_hwnd); //Send a WM_DESTROY message
+		}
+		if ((wParam == 'y' || wParam == 'Y') && alive == false)
+		{
+			restart = true;
+		}
 		if (wParam == VK_ESCAPE) //If the escape key was pressed
 		{
 			DestroyWindow(pInstance->m_hwnd); //Send a WM_DESTROY message
@@ -269,26 +286,16 @@ LRESULT CALLBACK cWNDManager::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 		}
 		if (wParam == VK_RIGHT) //If the right Arrow key was pressed
 		{
-			if (currentX<25)
-			{
-				currentX += 2.0f;
-				translationX = 2.0f;
-			}
+			moving = 1;
 		}
 		if (wParam == VK_LEFT) //If the Left Arrow key was pressed
 		{
-			if (currentX>-25)
-			{
-				currentX -= 2.0f;
-				translationX = -2.0f;
-			}
-			//Decrease rotation Angle
-			//glRotatef(rotationAngle, 0.0f, 1.0f, 0.0f);
+			moving = 2;
 		}
 		if (wParam == VK_UP) //If the UP Arrow key was pressed
 		{
 			//glTranslatef( 0.0f, 0.0f, 3.0f);
-			if (currentAngle < 45)
+			if (currentAngle < PLAYFIELDX)
 			{
 				currentAngle += 5;
 				rotationAngle += 5;
