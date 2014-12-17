@@ -12,6 +12,7 @@ cWNDManager.cpp
 #include "wglext.h"
 #include "windowOGL.h"
 #include "GameConstants.h"
+//#include "input1_3.dll"
 
 cWNDManager* cWNDManager::pInstance = NULL;
 
@@ -232,14 +233,17 @@ LRESULT CALLBACK cWNDManager::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 	case WM_KEYUP:
 			if (wParam == VK_SPACE)
 			{
+				// when the player lifts the spacebar the player stops firing
 				fire = false;
 			}
 			if (wParam == VK_RIGHT && moving == 1)
 			{
+				//If the player is moving right and lifts the right key they stop moving
 				moving = 0;
 			}
 			if (wParam == VK_LEFT && moving == 2)
 			{
+				//is the player is moving left and lifts the left key they stop moving
 				moving = 0;
 			}
 		break;
@@ -247,10 +251,12 @@ LRESULT CALLBACK cWNDManager::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 	case WM_KEYDOWN:
 		if ((wParam == 'n' || wParam == 'N') && alive == false)
 		{
+			//if the player presses n when the game is over the window closes
 			DestroyWindow(pInstance->m_hwnd); //Send a WM_DESTROY message
 		}
 		if ((wParam == 'y' || wParam == 'Y') && alive == false)
 		{
+			//if the player presses y when the game is over the game restarts
 			restart = true;
 		}
 		if (wParam == VK_ESCAPE) //If the escape key was pressed
@@ -259,6 +265,7 @@ LRESULT CALLBACK cWNDManager::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 		}
 		if (wParam == 'm' || wParam == 'M')
 		{
+			//if the player presses the m button the game is muted
 			playing = !playing;
 		}
 		if (wParam == 'd' || wParam == 'D')  //If d or D was pressed
@@ -286,16 +293,18 @@ LRESULT CALLBACK cWNDManager::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 		}
 		if (wParam == VK_RIGHT) //If the right Arrow key was pressed
 		{
+			//if the player presses the right key they will move right unitl they lift the key or move left
 			moving = 1;
 		}
 		if (wParam == VK_LEFT) //If the Left Arrow key was pressed
 		{
+			//if the player presses the left key they will move left unitl they lift the key or move right
 			moving = 2;
 		}
 		if (wParam == VK_UP) //If the UP Arrow key was pressed
 		{
-			//glTranslatef( 0.0f, 0.0f, 3.0f);
-			if (currentAngle < PLAYFIELDX)
+			//turns the player right until they releace the button, press another key or reach 45 degrees
+			if (currentAngle < 45)
 			{
 				currentAngle += 5;
 				rotationAngle += 5;
@@ -303,20 +312,21 @@ LRESULT CALLBACK cWNDManager::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 		}
 		if (wParam == VK_DOWN) //If the Down Arrow key was pressed
 		{
+			//turns the player left until they releace the button, press another key or reach -45 degrees
 			if (currentAngle > -45)
 			{
 				currentAngle -= 5;
 				rotationAngle -= 5;
 			}
-			
-			//glTranslatef(0.0f, 0.0f, -3.0f);
 		}
 		if (wParam == VK_SPACE) //If the Down Arrow key was pressed
 		{
+			//if the player presses the space bar they will fire until it is releaced
 			fire = true;
 		}
 		if (wParam == VK_SHIFT) //If the Down Arrow key was pressed
 		{
+			//if the player presses the shift key they will change camera views
 			camera = !camera;
 		}
 

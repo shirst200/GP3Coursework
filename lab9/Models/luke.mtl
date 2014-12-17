@@ -1,0 +1,24 @@
+# Blender MTL File: 'None'
+# Material Count: 2
+
+newmtl mat_0
+Ns 92.156863
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Users\Sam Hirst\Desktop\Year4\gp3\Labs\Lab6\lab6\lab6\Models\Textures\lucario_0_0.tga
+map_d C:\\Users\\Sam Hirst\\Desktop\\Year4\\gp3\\Labs\\Lab6\\lab6\\lab6\\Models\\Textures\\lucario_0_0.tga
+
+newmtl mat_1
+Ns 92.156863
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Users\Sam Hirst\Desktop\Year4\gp3\Labs\Lab6\lab6\lab6\Models\Textures\lucario_0_0.tga
+map_d C:\\Users\\Sam Hirst\\Desktop\\Year4\\gp3\\Labs\\Lab6\\lab6\\lab6\\Models\\Textures\\lucario_0_0.tga

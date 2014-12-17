@@ -17,7 +17,7 @@ bool windowOGL::initOGL()
 	glEnable(GL_COLOR_MATERIAL);
 	glEnable(GL_LIGHT0);
 	glEnable(GL_AMBIENT);
-	glColor3f(1,0,0);
+	glColor3f(1,1,1);
 	GLfloat lightpos[] = {currentX,0,-100};
 	glLightfv(GL_LIGHT0, GL_POSITION, lightpos);
 	

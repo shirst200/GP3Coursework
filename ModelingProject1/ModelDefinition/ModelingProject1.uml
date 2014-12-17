@@ -33,6 +33,50 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="a22a0008-da02-4cf2-8221-e65aaa1bd0c0">
+            <classMoniker
+              Id="9f6df389-030e-45f4-9a69-8c54a316fb78"
+              LastKnownName="cModel"
+              LastKnownLocation="ModelingProject1.uml" />
+          </dependency>
+          <dependency
+            Id="ce9b4ca8-2ad7-413f-86e3-bcd159294d31">
+            <classMoniker
+              Id="e6eb20fb-3efd-4154-9a6c-ae37c09fbb41"
+              LastKnownName="cModelLoader"
+              LastKnownLocation="ModelingProject1.uml" />
+          </dependency>
+          <dependency
+            Id="4fc5344c-5a49-4e33-896a-64905ebad36d">
+            <classMoniker
+              Id="91f412a4-5f28-4431-acc8-195611cb8149"
+              LastKnownName="cSound"
+              LastKnownLocation="ModelingProject1.uml" />
+          </dependency>
+          <dependency
+            Id="739c9f47-0ec2-4556-a804-9fa67fe9aa90">
+            <classMoniker
+              Id="68ecd55d-b404-4b51-ae8e-1cecca0c6e13"
+              LastKnownName="wglext"
+              LastKnownLocation="ModelingProject1.uml" />
+          </dependency>
+          <dependency
+            Id="7432ca2c-437a-4d1f-8f34-f2ba2f3379d4">
+            <classMoniker
+              Id="010293ab-e4e1-45f1-b347-af14088d80ce"
+              LastKnownName="cWNDManager"
+              LastKnownLocation="ModelingProject1.uml" />
+          </dependency>
+          <dependency
+            Id="9d670b94-a508-476c-aa7b-192380aec66b">
+            <classMoniker
+              Id="a1352b19-4b38-481e-9a4f-a48ae158d637"
+              LastKnownName="windowOGL"
+              LastKnownLocation="ModelingProject1.uml" />
+          </dependency>
+        </suppliersInternal>
         <ownedOperationsInternal>
           <operation
             Id="f7f68482-228a-46a8-aef4-93b5b2f9f17a"
@@ -330,6 +374,16 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="227d515b-8541-44b9-bc3c-798bef55ee3c"
+            isSubstitutable="false">
+            <classMoniker
+              Id="9f6df389-030e-45f4-9a69-8c54a316fb78"
+              LastKnownName="cModel"
+              LastKnownLocation="ModelingProject1.uml" />
+          </generalization>
+        </generalsInternal>
         <ownedAttributesInternal>
           <property
             Id="40502fc4-2557-41be-b23a-a5f2899572a0"
@@ -395,6 +449,16 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="97bfb5fb-58c5-4935-89e3-8c46e05f1bdc"
+            isSubstitutable="false">
+            <classMoniker
+              Id="9f6df389-030e-45f4-9a69-8c54a316fb78"
+              LastKnownName="cModel"
+              LastKnownLocation="ModelingProject1.uml" />
+          </generalization>
+        </generalsInternal>
         <ownedAttributesInternal>
           <property
             Id="21065583-f43b-43b5-ad37-8e9fe80215da"
@@ -544,6 +608,16 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="d1a2ab0e-eaa5-422a-a498-986ea4ccd5e0"
+            isSubstitutable="false">
+            <classMoniker
+              Id="9f6df389-030e-45f4-9a69-8c54a316fb78"
+              LastKnownName="cModel"
+              LastKnownLocation="ModelingProject1.uml" />
+          </generalization>
+        </generalsInternal>
         <ownedOperationsInternal>
           <operation
             Id="ff8600c6-43bc-48e8-8016-4112d4b75d83"
@@ -1294,6 +1368,44 @@
       <undefinedType
         Id="234fa899-2900-41e0-8074-bc0d66355254"
         name="ALutint" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="010293ab-e4e1-45f1-b347-af14088d80ce"
+        name="cWNDManager"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="0ae8c35f-8e9b-4e47-afcb-7b5feb7c3535"
+        name="GameConstants"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="68ecd55d-b404-4b51-ae8e-1cecca0c6e13"
+        name="wglext"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="a1352b19-4b38-481e-9a4f-a48ae158d637"
+        name="windowOGL"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="ca1ca9db-f1e6-47bb-880f-96a7d85e0855"
+        LastKnownName="Package1"
+        LastKnownLocation="Package_1718.uml" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType
