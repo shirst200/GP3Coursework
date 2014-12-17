@@ -23,7 +23,6 @@ public:
 	CXBOXController(int playerNumber);
 	XINPUT_STATE GetState();
 	bool IsConnected();
-	void Vibrate(int leftVal = 0, int rightVal = 0);
 };
 
 #endif

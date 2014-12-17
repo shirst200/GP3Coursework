@@ -1,43 +1,5 @@
-﻿Build started 17/12/2014 1:06:12 PM.
-     1>Project "C:\Users\Sam Hirst\Desktop\Year4\gp3\Labs\Lab6\lab9\GP3Coursework\lab9\lab9.vcxproj" on node 2 (Rebuild target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:none cControler.cpp cEnemy.cpp cLaser.cpp cModel.cpp cModelLoader.cpp cPlayer.cpp cSound.cpp cWNDManager.cpp GameConstants.cpp main.cpp windowOGL.cpp
-         windowOGL.cpp
-         main.cpp
-     1>c:\users\sam hirst\desktop\year4\gp3\labs\lab6\lab9\gp3coursework\lab9\main.cpp(110): warning C4309: 'argument' : truncation of constant value
-         GameConstants.cpp
-         cWNDManager.cpp
-         cSound.cpp
-         cPlayer.cpp
-     1>c:\users\sam hirst\desktop\year4\gp3\labs\lab6\lab9\gp3coursework\lab9\cplayer.cpp(24): warning C4554: '&' : check operator precedence for possible error; use parentheses to clarify precedence
-     1>c:\users\sam hirst\desktop\year4\gp3\labs\lab6\lab9\gp3coursework\lab9\cplayer.cpp(29): warning C4554: '&' : check operator precedence for possible error; use parentheses to clarify precedence
-     1>c:\users\sam hirst\desktop\year4\gp3\labs\lab6\lab9\gp3coursework\lab9\cplayer.cpp(34): warning C4554: '&' : check operator precedence for possible error; use parentheses to clarify precedence
-     1>c:\users\sam hirst\desktop\year4\gp3\labs\lab6\lab9\gp3coursework\lab9\cplayer.cpp(43): warning C4554: '&' : check operator precedence for possible error; use parentheses to clarify precedence
-         cModelLoader.cpp
-         cModel.cpp
-         cLaser.cpp
-         cEnemy.cpp
-         cControler.cpp
-         Generating Code...
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Sam Hirst\Desktop\Year4\gp3\Labs\Lab6\lab9\GP3Coursework\Debug\lab9.exe" /INCREMENTAL /NOLOGO glut32.lib "glm-0.3.2lib.lib" libdrawtext.lib glew32.lib glew32s.lib OpenAL32.lib alut.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Sam Hirst\Desktop\Year4\gp3\Labs\Lab6\lab9\GP3Coursework\Debug\lab9.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Sam Hirst\Desktop\Year4\gp3\Labs\Lab6\lab9\GP3Coursework\Debug\lab9.lib" /MACHINE:X86 Debug\cControler.obj
-         Debug\cEnemy.obj
-         Debug\cLaser.obj
-         Debug\cModel.obj
-         Debug\cModelLoader.obj
-         Debug\cPlayer.obj
-         Debug\cSound.obj
-         Debug\cWNDManager.obj
-         Debug\GameConstants.obj
-         Debug\main.obj
-         Debug\windowOGL.obj
-     1>cPlayer.obj : error LNK2019: unresolved external symbol "public: __thiscall CXBOXController::CXBOXController(int)" (??0CXBOXController@@QAE@H@Z) referenced in function "public: virtual void __thiscall cPlayer::update(float)" (?update@cPlayer@@UAEXM@Z)
-     1>main.obj : error LNK2001: unresolved external symbol "public: __thiscall CXBOXController::CXBOXController(int)" (??0CXBOXController@@QAE@H@Z)
-     1>cPlayer.obj : error LNK2019: unresolved external symbol "public: struct _XINPUT_STATE __thiscall CXBOXController::GetState(void)" (?GetState@CXBOXController@@QAE?AU_XINPUT_STATE@@XZ) referenced in function "public: virtual void __thiscall cPlayer::update(float)" (?update@cPlayer@@UAEXM@Z)
-     1>main.obj : error LNK2001: unresolved external symbol "public: struct _XINPUT_STATE __thiscall CXBOXController::GetState(void)" (?GetState@CXBOXController@@QAE?AU_XINPUT_STATE@@XZ)
-     1>C:\Users\Sam Hirst\Desktop\Year4\gp3\Labs\Lab6\lab9\GP3Coursework\Debug\lab9.exe : fatal error LNK1120: 2 unresolved externals
-     1>Done Building Project "C:\Users\Sam Hirst\Desktop\Year4\gp3\Labs\Lab6\lab9\GP3Coursework\lab9\lab9.vcxproj" (Rebuild target(s)) -- FAILED.
+﻿Build started 17/12/2014 1:42:39 PM.
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:08.72
+Time Elapsed 00:00:00.08

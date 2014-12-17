@@ -76,6 +76,13 @@
               LastKnownName="windowOGL"
               LastKnownLocation="ModelingProject1.uml" />
           </dependency>
+          <dependency
+            Id="de5d06aa-1ebe-486c-bf85-7df9acf5624b">
+            <classMoniker
+              Id="61409566-0b4b-4da3-b8b7-65b6c4b3d066"
+              LastKnownName="CXBOXController"
+              LastKnownLocation="ModelingProject1.uml" />
+          </dependency>
         </suppliersInternal>
         <ownedOperationsInternal>
           <operation
@@ -374,6 +381,15 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="18265f67-6cc4-4a5b-9f31-b6dd8adf9f5d">
+            <classMoniker
+              Id="61409566-0b4b-4da3-b8b7-65b6c4b3d066"
+              LastKnownName="CXBOXController"
+              LastKnownLocation="ModelingProject1.uml" />
+          </dependency>
+        </suppliersInternal>
         <generalsInternal>
           <generalization
             Id="227d515b-8541-44b9-bc3c-798bef55ee3c"
@@ -1406,6 +1422,14 @@
         Id="ca1ca9db-f1e6-47bb-880f-96a7d85e0855"
         LastKnownName="Package1"
         LastKnownLocation="Package_1718.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="61409566-0b4b-4da3-b8b7-65b6c4b3d066"
+        name="CXBOXController"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

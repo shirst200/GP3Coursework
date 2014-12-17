@@ -78,6 +78,7 @@
     <ClCompile Include="cPlayer.cpp" />
     <ClCompile Include="cSound.cpp" />
     <ClCompile Include="cWNDManager.cpp" />
+    <ClCompile Include="CXBOXController.cpp" />
     <ClCompile Include="GameConstants.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="windowOGL.cpp" />

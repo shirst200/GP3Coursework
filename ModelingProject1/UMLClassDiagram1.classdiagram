@@ -25,6 +25,10 @@
             <classMoniker Id="c083d6c2-feda-4294-ad85-7689240e688d" LastKnownName="windowOGL" />
             <elementDefinition Id="9d670b94-a508-476c-aa7b-192380aec66b" />
           </dependency>
+          <dependency Id="5f687a1d-d3cf-474c-96fa-e3aaa2ba23b5">
+            <classMoniker Id="529e8e11-048c-4046-aa97-cb40e3c71fc8" LastKnownName="CXBOXController" />
+            <elementDefinition Id="de5d06aa-1ebe-486c-bf85-7df9acf5624b" />
+          </dependency>
         </suppliersInternal>
         <ownedOperationsInternal>
           <operation Id="b83377c3-3a09-41ec-a755-c7489246d9c1" name="WinMain" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
@@ -135,6 +139,12 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="e58059be-4a53-4a26-94b0-0850b2002226" name="cPlayer" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="6ae831b5-e0ea-4b96-ba5f-03ab1c016ee8" />
+        <suppliersInternal>
+          <dependency Id="65d2966e-2dfa-437b-a5f7-2736361bb53b">
+            <classMoniker Id="529e8e11-048c-4046-aa97-cb40e3c71fc8" LastKnownName="CXBOXController" />
+            <elementDefinition Id="18265f67-6cc4-4a5b-9f31-b6dd8adf9f5d" />
+          </dependency>
+        </suppliersInternal>
         <generalsInternal>
           <generalization Id="db8263f1-c037-481d-bc8e-2c7cef21d84c" isSubstitutable="false">
             <classMoniker Id="0fb38da3-73ba-4666-be40-76afa49f572f" LastKnownName="cModel" />
@@ -630,6 +640,11 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="c083d6c2-feda-4294-ad85-7689240e688d" name="windowOGL" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="a1352b19-4b38-481e-9a4f-a48ae158d637" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="529e8e11-048c-4046-aa97-cb40e3c71fc8" name="CXBOXController" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="61409566-0b4b-4da3-b8b7-65b6c4b3d066" />
       </class>
     </logicalClassDesignerModelHasTypes>
   </packagedElements>

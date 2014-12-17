@@ -34,19 +34,3 @@ bool CXBOXController::IsConnected()
 		return false;
 	}
 }
-
-void CXBOXController::Vibrate(int leftVal, int rightVal)
-{
-	// Create a Vibraton State
-	XINPUT_VIBRATION Vibration;
-
-	// Zeroise the Vibration
-	ZeroMemory(&Vibration, sizeof(XINPUT_VIBRATION));
-
-	// Set the Vibration Values
-	Vibration.wLeftMotorSpeed = leftVal;
-	Vibration.wRightMotorSpeed = rightVal;
-
-	// Vibrate the controller
-	XInputSetState(_controllerNum, &Vibration);
-}
