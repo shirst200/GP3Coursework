@@ -15,7 +15,7 @@
 #include "cPlayer.h"
 #include "cLaser.h"
 #include "cSound.h"
-//#include "cControler.h"
+#include "CXBOXController.h"
 #include <vector>
 #include <time.h>
 
@@ -127,8 +127,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR cmdLine, 
 	float time = 0.0f;
 	int score = 0;
 
-	//cControler* Player1;
-	//Player1 = new cControler(0);
+	CXBOXController* Player1;
+	Player1 = new CXBOXController(1);
     //This is the mainloop, we render frames until isRunning returns false
 	while (pgmWNDMgr->isWNDRunning())
     {
@@ -254,9 +254,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR cmdLine, 
 		//If the game is not muted the background music will play else it will not
 		if (playing == false){ themeMusic.playAudio(AL_FALSE); }
 		//If the player is holding the shoot button and it has been 0.5 seconds since the last pellet was fired the player shoots a pellet
-		if (fire&&(time-lastShot)>shotDelay&&alive==true)
+		if ((fire || Player1->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_A) && (time - lastShot)>shotDelay&&alive == true)
 		{
-			//Player1->Vibrate();
 			//This creates the pellet, places it at the player and sets it going up the screen
 			cLaser* laser = new cLaser();
 			glm::vec3 mdlLaserDirection;

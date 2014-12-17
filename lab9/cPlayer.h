@@ -3,6 +3,7 @@
 
 #include "GameConstants.h"
 #include "cModel.h"
+#include "CXBOXController.h"
 
 class cPlayer : public cModel
 {

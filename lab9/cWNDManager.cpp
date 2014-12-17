@@ -229,9 +229,9 @@ LRESULT CALLBACK cWNDManager::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 		pInstance->getAttachedWND()->onResize(width, height); //Call the example's resize method
 	}
 		break;
-
+		
 	case WM_KEYUP:
-			if (wParam == VK_SPACE)
+		if (wParam == VK_SPACE)
 			{
 				// when the player lifts the spacebar the player stops firing
 				fire = false;

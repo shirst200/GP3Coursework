@@ -48,6 +48,9 @@
     <ClCompile Include="cSound.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cControler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cEnemy.h">

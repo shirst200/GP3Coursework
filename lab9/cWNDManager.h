@@ -10,7 +10,6 @@ cWNDManager.h
 #include <windows.h>
 #include "windowOGL.h"
 
-
 class cWNDManager
 {
 public:
@@ -32,7 +31,7 @@ public:
 
 	float getElapsedSeconds();
 	static cWNDManager* getInstance();
-
+	
 
 private:
 	static cWNDManager* pInstance;

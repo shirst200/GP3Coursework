@@ -70,6 +70,7 @@
     <None Include="Assimp32.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="cControler.cpp" />
     <ClCompile Include="cEnemy.cpp" />
     <ClCompile Include="cLaser.cpp" />
     <ClCompile Include="cModel.cpp" />

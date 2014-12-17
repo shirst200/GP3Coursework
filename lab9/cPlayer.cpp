@@ -17,8 +17,38 @@ void cPlayer::setHealth(int damage)
 }
 void cPlayer::update(float elapsedTime)
 {
+	CXBOXController* Player1;
+	Player1 = new CXBOXController(1);
 	if (alive == true)
 	{
+		if (Player1->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_RIGHT>0) //If the right Arrow key was pressed
+		{
+			//if the player presses the right key they will move right unitl they lift the key or move left
+			moving = 1;
+		}
+		if (Player1->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_LEFT>0) //If the Left Arrow key was pressed
+		{
+			//if the player presses the left key they will move left unitl they lift the key or move right
+			moving = 2;
+		}
+		if (Player1->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_UP>0) //If the UP Arrow key was pressed
+		{
+			//turns the player right until they releace the button, press another key or reach 45 degrees
+			if (currentAngle < 45)
+			{
+				currentAngle += 5;
+				rotationAngle += 5;
+			}
+		}
+		if (Player1->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_DOWN>0) //If the Down Arrow key was pressed
+		{
+			//turns the player left until they releace the button, press another key or reach -45 degrees
+			if (currentAngle > -45)
+			{
+				currentAngle -= 5;
+				rotationAngle -= 5;
+			}
+		}
 		if (moving == 1 && currentX < PLAYFIELDX)
 		{
 			//If input right and not at the edge of the game it will move right
